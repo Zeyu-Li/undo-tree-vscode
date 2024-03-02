@@ -4,7 +4,7 @@
   "description": "undo tree",
   "version": "0.0.1",
   "engines": {
-    "vscode": "^1.87.0"
+    "vscode": "^1.72.0"
   },
   "categories": [
     "Other"
@@ -14,8 +14,12 @@
   "contributes": {
     "commands": [
       {
-        "command": "undo-tree.helloWorld",
-        "title": "Hello World"
+        "command": "undo-tree.captureUndo",
+        "title": "Capture Undo and Redo."
+      },
+      {
+        "command": "undo-tree.goDown",
+        "title": "Go Down the Tree."
       }
     ]
   },
@@ -28,14 +32,14 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.87.0",
+    "@types/d3": "^7.4.3",
     "@types/mocha": "^10.0.6",
     "@types/node": "18.x",
+    "@types/vscode": "^1.87.0",
     "@typescript-eslint/eslint-plugin": "^7.0.2",
     "@typescript-eslint/parser": "^7.0.2",
-    "eslint": "^8.56.0",
-    "typescript": "^5.3.3",
     "@vscode/test-cli": "^0.0.6",
-    "@vscode/test-electron": "^2.3.9"
+    "@vscode/test-electron": "^2.3.9",
+    "d3": "^7.8.5"
   }
 }
