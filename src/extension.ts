@@ -19,14 +19,16 @@ export function activate(context: vscode.ExtensionContext) {
 		const text_buff = vscode.window.activeTextEditor?.document.getText() || ''
         undoTree.addState(text_buff);
         undoTree.undo();
-		const text_buff_new = vscode.window.activeTextEditor?.document.getText() || ''
-        undoTree.addState(text_buff_new);
+		// const text_buff_new = vscode.window.activeTextEditor?.document.getText() || ''
+        // undoTree.addState(text_buff_new);
         treeDataProvider.refresh();
+        // vscode.commands.executeCommand("undo")
     });
 
     vscode.commands.registerCommand('extension.redo', (event) => {
         undoTree.redo(0); // Assuming single child for simplicity
         treeDataProvider.refresh();
+        // vscode.commands.executeCommand("redo")
     });
 
     vscode.commands.registerCommand('extension.gotoState', (node: TreeNode) => {

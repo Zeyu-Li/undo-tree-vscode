@@ -27,22 +27,22 @@
     "commands": [
         {
             "command": "extension.undo",
-            "title": "Undo"
+            "title": "Undo Tree: Undo"
         },
         {
             "command": "extension.redo",
-            "title": "Redo"
+            "title": "Undo Tree: Redo"
         }
     ],
     "keybindings": [
         {
             "command": "extension.undo",
-            "key": "ctrl+y",
+            "key": "ctrl+alt+z",
             "when": "editorTextFocus"
         },
         {
             "command": "extension.redo",
-            "key": "ctrl+shift+y",
+            "key": "ctrl+alt+y",
             "when": "editorTextFocus"
         }
     ]

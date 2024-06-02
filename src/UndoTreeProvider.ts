@@ -20,7 +20,7 @@ export class UndoTreeProvider implements vscode.TreeDataProvider<TreeNodeItem> {
     }
 
     private getTreeItems(node: TreeNode): TreeNodeItem[] {
-        return node.children.map((child, index) => new TreeNodeItem(`State ${index}`, child));
+        return node.children.map((child, index) => new TreeNodeItem(`${child.state === this.undoTree.getCurrentNode().state ? "* ": ""}State ${index + 1}`, child));
     }
 
     refresh(): void {
@@ -32,7 +32,7 @@ class TreeNodeItem extends vscode.TreeItem {
     constructor(
         public readonly label: string,
         public readonly node: TreeNode,
-        public readonly collapsibleState: vscode.TreeItemCollapsibleState = vscode.TreeItemCollapsibleState.Collapsed
+        public readonly collapsibleState: vscode.TreeItemCollapsibleState = vscode.TreeItemCollapsibleState.Expanded
     ) {
         super(label, collapsibleState);
         this.command = {
