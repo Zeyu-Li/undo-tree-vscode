@@ -9,6 +9,7 @@ let treeDataProvider: UndoTreeProvider;
 export function activate(context: vscode.ExtensionContext) {
     const initialState = vscode.window.activeTextEditor?.document.getText() || '';
     undoTree = new UndoTree(initialState);
+    // init default on load as node
     undoTree.addState(initialState);
 
     // vscode.workspace.onDidChangeTextDocument(event => {
@@ -16,7 +17,7 @@ export function activate(context: vscode.ExtensionContext) {
     //     treeDataProvider.refresh();
     // });
 
-    vscode.commands.registerCommand('extension.undo', (event) => {
+    vscode.commands.registerCommand('extension.undo', () => {
 		const text_buff = vscode.window.activeTextEditor?.document.getText() || ''
         // if no change, don't do anything
         if (text_buff !== undoTree.getCurrentNode().state) {
@@ -27,7 +28,7 @@ export function activate(context: vscode.ExtensionContext) {
         // vscode.commands.executeCommand("undo")
     });
 
-    vscode.commands.registerCommand('extension.redo', (event) => {
+    vscode.commands.registerCommand('extension.redo', () => {
         undoTree.redo(0); // Assuming single child for simplicity
         treeDataProvider.refresh();
         // vscode.commands.executeCommand("redo")

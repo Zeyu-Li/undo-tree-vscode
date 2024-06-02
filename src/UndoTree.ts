@@ -1,17 +1,18 @@
 import * as vscode from 'vscode';
 import { TreeNode } from './TreeNode';
+import { randomUUID } from 'crypto';
 
 export class UndoTree {
     private root: TreeNode;
     private currentNode: TreeNode;
 
     constructor(initialState: string) {
-        this.root = { state: initialState, children: [], parent: null };
+        this.root = { state: initialState, children: [], parent: null, hash: randomUUID() };
         this.currentNode = this.root;
     }
 
     addState(newState: string) {
-        const newNode: TreeNode = { state: newState, children: [], parent: this.currentNode };
+        const newNode: TreeNode = { state: newState, children: [], parent: this.currentNode, hash: randomUUID() };
         this.currentNode.children.push(newNode);
         this.currentNode = newNode;
     }
