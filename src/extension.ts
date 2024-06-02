@@ -9,6 +9,7 @@ let treeDataProvider: UndoTreeProvider;
 export function activate(context: vscode.ExtensionContext) {
     const initialState = vscode.window.activeTextEditor?.document.getText() || '';
     undoTree = new UndoTree(initialState);
+    undoTree.addState(initialState);
 
     // vscode.workspace.onDidChangeTextDocument(event => {
     //     undoTree.addState(event.document.getText());
@@ -17,10 +18,11 @@ export function activate(context: vscode.ExtensionContext) {
 
     vscode.commands.registerCommand('extension.undo', (event) => {
 		const text_buff = vscode.window.activeTextEditor?.document.getText() || ''
-        undoTree.addState(text_buff);
+        // if no change, don't do anything
+        if (text_buff !== undoTree.getCurrentNode().state) {
+            undoTree.addState(text_buff);
+        }
         undoTree.undo();
-		// const text_buff_new = vscode.window.activeTextEditor?.document.getText() || ''
-        // undoTree.addState(text_buff_new);
         treeDataProvider.refresh();
         // vscode.commands.executeCommand("undo")
     });

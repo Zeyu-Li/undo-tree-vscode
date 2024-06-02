@@ -17,10 +17,10 @@ export class UndoTree {
     }
 
     undo() {
-        if (this.currentNode.parent && this.currentNode.parent !== this.root) {
+        if (this.currentNode.parent) {
             this.currentNode = this.currentNode.parent;
             this.restoreState();
-            this.currentNode = this.currentNode.children[0];
+            // this.currentNode = this.currentNode.children[0];
         }
     }
 
