@@ -45,7 +45,7 @@ export class UndoTreeProvider implements vscode.TreeDataProvider<TreeNodeItem> {
     private getTreeItems(node: TreeNode): TreeNodeItem[] {
         return node.children.map(
             (child, index) => 
-                new TreeNodeItem(`State ${child.count}${child.hash === this.undoTree.getCurrentNode().hash ? " *": ""} ${this.undoTree.getShowTimecode() ? `(${this.timeDifference(new Date().getTime(), child.datetime.getTime())} ago)`: ""}`, child)
+                new TreeNodeItem(`State ${child.count}${child.hash === this.undoTree.getCurrentNode().hash ? " *": ""} ${this.undoTree.getShowTimecode() ? `\t(${this.timeDifference(new Date().getTime(), child.datetime.getTime())} ago)`: ""}`, child)
         );
     }
 
