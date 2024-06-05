@@ -1,6 +1,6 @@
-# undo-tree README
+# Undo Tree
 
-This is the README for your extension "undo-tree". After writing up a brief description, we recommend including the following sections.
+Like the Undo Tree addon found in [Vim](https://github.com/mbbill/undotree) or [Emacs](https://elpa.gnu.org/packages/undo-tree.html) but found right inside of VSCode! Make changes and create a state with <kbd>ctrl</kbd>+<kbd>y</kbd> or <kbd>&#8984;</kbd>+<kbd>y</kbd> on MacOS. This will create a new child state to the initial state. To go back a state to the parent state do <kbd>ctrl</kbd>+<kbd>alt</kbd>+<kbd>z</kbd>. Now to go back the new state, hit <kbd>ctrl</kbd>+<kbd>alt</kbd>+<kbd>y</kbd>. Make some more changes and hitting +<kbd>alt</kbd>+<kbd>z</kbd> will create a new state and undo. Navigate easier using the sidebar and click to get to the desired state. You can even see the timecode of the changes if you toggle show timecode.
 
 ## Features
 
@@ -10,9 +10,13 @@ For example if there is an image subfolder under your extension project workspac
 
 \!\[feature X\]\(images/feature-x.png\)
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+Toggle the timecode of when you made the changes by going to command palette and looking up `Undo Tree: Toggle Showing Timecode`.
 
-## Requirements
+Reset the tree by going to command palette and looking up `Undo Tree: Reset`. This will remove all the saved states.
+
+> Tip: If you have a super large file, this extension may not be good for you since it stores the code of every node in memory.
+
+<!-- ## Requirements
 
 If you have any requirements or dependencies, add a section describing those and how to install and configure them.
 
@@ -25,47 +29,18 @@ For example:
 This extension contributes the following settings:
 
 * `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+* `myExtension.thing`: Set to `blah` to do something. -->
 
-## Known Issues
+## Issues
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+If there are any issues, we track it on [GitHub](https://github.com/Zeyu-Li/undo-tree-vscode) issues' tab.
 
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
+Thanks in advance for reporting any issues
 
 ---
 
-## Following extension guidelines
+<!-- ## Following extension guidelines
 
 Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
 
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines) -->
