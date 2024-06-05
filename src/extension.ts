@@ -8,16 +8,18 @@ let treeDataProvider: UndoTreeProvider;
 
 // TODO: reset node tree button && change icons
 export function activate(context: vscode.ExtensionContext) {
-    const initialState = vscode.window.activeTextEditor?.document.getText() || '';
+    const initialState =
+        vscode.window.activeTextEditor?.document.getText() || '';
     undoTree = new UndoTree(initialState);
     // init default on load as node
     undoTree.addState(initialState);
 
     const undoFunc = () => {
         /**
-         * Undos 
+         * Undos
          */
-		const text_buff = vscode.window.activeTextEditor?.document.getText() || ''
+        const text_buff =
+            vscode.window.activeTextEditor?.document.getText() || '';
         // if no change, don't do anything
         if (text_buff !== undoTree.getCurrentNode().state) {
             undoTree.addState(text_buff);
@@ -25,7 +27,7 @@ export function activate(context: vscode.ExtensionContext) {
         undoTree.undo();
         treeDataProvider.refresh();
         // vscode.commands.executeCommand("undo")
-    }
+    };
 
     // vscode.workspace.onDidChangeTextDocument(event => {
     //     undoTree.addState(event.document.getText());
@@ -46,7 +48,8 @@ export function activate(context: vscode.ExtensionContext) {
     });
 
     vscode.commands.registerCommand('extension.resetTree', () => {
-        const newInitState = vscode.window.activeTextEditor?.document.getText() || '';
+        const newInitState =
+            vscode.window.activeTextEditor?.document.getText() || '';
         undoTree.reset(newInitState);
         undoTree.addState(newInitState);
 
@@ -54,11 +57,12 @@ export function activate(context: vscode.ExtensionContext) {
     });
 
     vscode.commands.registerCommand('extension.saveAndAdvance', () => {
-		const text_buff = vscode.window.activeTextEditor?.document.getText() || ''
+        const text_buff =
+            vscode.window.activeTextEditor?.document.getText() || '';
         // if no change, don't do anything
         if (text_buff !== undoTree.getCurrentNode().state) {
             const nodeCount = undoTree.addState(text_buff);
-            undoTree.redo(nodeCount-1);
+            undoTree.redo(nodeCount - 1);
             treeDataProvider.refresh();
         }
     });

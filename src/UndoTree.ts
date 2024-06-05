@@ -9,7 +9,14 @@ export class UndoTree {
     private showTimecode = false; // show timecode is false by default
 
     constructor(initialState: string) {
-        this.root = { state: initialState, children: [], parent: null, hash: randomUUID(), datetime: new Date(), count: 0 };
+        this.root = {
+            state: initialState,
+            children: [],
+            parent: null,
+            hash: randomUUID(),
+            datetime: new Date(),
+            count: 0
+        };
         this.currentNode = this.root;
     }
 
@@ -17,12 +24,19 @@ export class UndoTree {
         /**
          * adds state and returns how many children are in the parent node
          */
-        const newNode: TreeNode = { state: newState, children: [], parent: this.currentNode, hash: randomUUID(), datetime: new Date(), count: this.stateCounter };
+        const newNode: TreeNode = {
+            state: newState,
+            children: [],
+            parent: this.currentNode,
+            hash: randomUUID(),
+            datetime: new Date(),
+            count: this.stateCounter
+        };
         this.stateCounter++;
         this.currentNode.children.push(newNode);
-        const child_count = this.currentNode.children.length
+        const child_count = this.currentNode.children.length;
         this.currentNode = newNode;
-        return child_count
+        return child_count;
     }
 
     toggleTimecode() {
@@ -55,9 +69,16 @@ export class UndoTree {
     }
 
     reset(initialState: string) {
-        this.root = { state: initialState, children: [], parent: null, hash: randomUUID(), datetime: new Date(), count: 0 };
+        this.root = {
+            state: initialState,
+            children: [],
+            parent: null,
+            hash: randomUUID(),
+            datetime: new Date(),
+            count: 0
+        };
         this.currentNode = this.root;
-        this.stateCounter = 1
+        this.stateCounter = 1;
     }
 
     restoreState() {
@@ -68,7 +89,11 @@ export class UndoTree {
                 editor.document.positionAt(0),
                 editor.document.positionAt(editor.document.getText().length)
             );
-            edit.replace(editor.document.uri, fullRange, this.currentNode.state);
+            edit.replace(
+                editor.document.uri,
+                fullRange,
+                this.currentNode.state
+            );
             vscode.workspace.applyEdit(edit);
         }
     }
