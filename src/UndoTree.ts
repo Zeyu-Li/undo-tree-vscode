@@ -3,10 +3,10 @@ import { TreeNode } from './TreeNode';
 import { randomUUID } from 'crypto';
 
 export class UndoTree {
-    private root: TreeNode;
-    private currentNode: TreeNode;
-    private stateCounter: number = 1;
-    private showTimecode = false; // show timecode is false by default
+    private root: TreeNode;             // this is a placeholder node
+    private currentNode: TreeNode;      // this is the node in focus
+    private stateCounter: number = 1;   // counts how many states are tracked
+    private showTimecode = false;       // show timecode is false by default
 
     constructor(initialState: string) {
         this.root = {
@@ -20,10 +20,12 @@ export class UndoTree {
         this.currentNode = this.root;
     }
 
+    /**
+     * Adds state and returns how many children are in the parent node
+     * @param newState new node state
+     * @returns how many children are in the current node
+     */
     addState(newState: string): number {
-        /**
-         * adds state and returns how many children are in the parent node
-         */
         const newNode: TreeNode = {
             state: newState,
             children: [],
@@ -39,14 +41,9 @@ export class UndoTree {
         return child_count;
     }
 
-    toggleTimecode() {
-        this.showTimecode = !this.showTimecode;
-    }
-
-    getShowTimecode() {
-        return this.showTimecode;
-    }
-
+    /**
+     * If it is not the child of the root node, go to parent node
+     */
     undo() {
         // must check parent parent, because root is not actually a valid state
         if (this.currentNode.parent && this.currentNode.parent.parent) {
@@ -56,6 +53,10 @@ export class UndoTree {
         }
     }
 
+    /**
+     * Goes to the child node of current node
+     * @param childIndex which of the child of current node to go to
+     */
     redo(childIndex: number) {
         if (this.currentNode.children[childIndex]) {
             this.currentNode = this.currentNode.children[childIndex];
@@ -63,11 +64,19 @@ export class UndoTree {
         }
     }
 
+    /**
+     * Change view to given node
+     * @param node node to go to
+     */
     gotoNode(node: TreeNode) {
         this.currentNode = node;
         this.restoreState();
     }
 
+    /**
+     * Resets the tree with a new root
+     * @param initialState Hards reset the tree by creating a new root
+     */
     reset(initialState: string) {
         this.root = {
             state: initialState,
@@ -81,6 +90,9 @@ export class UndoTree {
         this.stateCounter = 1;
     }
 
+    /**
+     * Restores the code of the current state
+     */
     restoreState() {
         const editor = vscode.window.activeTextEditor;
         if (editor) {
@@ -98,10 +110,33 @@ export class UndoTree {
         }
     }
 
+    /**
+     * Toggles between showing and hiding the timecode
+     */
+    toggleTimecode() {
+        this.showTimecode = !this.showTimecode;
+    }
+
+    /**
+     * Gets if we should show the timecode
+     * @returns if we should show the timecode
+     */
+    getShowTimecode(): boolean {
+        return this.showTimecode;
+    }
+
+    /**
+     * Gets the current node of the UndoTree
+     * @returns current node in focus
+     */
     getCurrentNode(): TreeNode {
         return this.currentNode;
     }
 
+    /**
+     * Gets the root node
+     * @returns root node (this is just a placeholder node)
+     */
     getRoot(): TreeNode {
         return this.root;
     }

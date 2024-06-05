@@ -23,7 +23,17 @@ export class UndoTreeProvider implements vscode.TreeDataProvider<TreeNodeItem> {
         return Promise.resolve(this.getTreeItems(element.node));
     }
 
-    private timeDifference(newDate: number, oldDate: number) {
+    /**
+     * The time elapsed in a nicely formatted string of the most significant digit.
+     * For example:
+     *      1 minute
+     *      3 minutes
+     *      4 seconds
+     * @param newDate new date
+     * @param oldDate old date
+     * @returns nicely formatted dates
+     */
+    private timeDifference(newDate: number, oldDate: number): string {
         const msPerSecond = 1000;
         const msPerMinute = msPerSecond * 60;
         const msPerHour = msPerMinute * 60;
@@ -46,9 +56,14 @@ export class UndoTreeProvider implements vscode.TreeDataProvider<TreeNodeItem> {
         }
     }
 
+    /**
+     * Gets all child nodes of the input node as TreeNodeItems[]
+     * @param node get the tree nodes along with labels
+     * @returns list of child nodes
+     */
     private getTreeItems(node: TreeNode): TreeNodeItem[] {
         return node.children.map(
-            (child, index) =>
+            (child) =>
                 new TreeNodeItem(
                     `State ${child.count}${
                         child.hash === this.undoTree.getCurrentNode().hash
@@ -67,6 +82,9 @@ export class UndoTreeProvider implements vscode.TreeDataProvider<TreeNodeItem> {
         );
     }
 
+    /**
+     * Rerenders TreeDataProvider
+     */
     refresh(): void {
         this._onDidChangeTreeData.fire();
     }
