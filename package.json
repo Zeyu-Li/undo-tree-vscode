@@ -1,8 +1,8 @@
 {
   "name": "undo-tree",
-  "displayName": "undo-tree",
-  "description": "undos tree, similar to vim undo tree or emacs",
-  "version": "0.0.1",
+  "displayName": "Undo Tree",
+  "description": "Undo Tree like that in Vim or Emacs!!",
+  "version": "1.0.0",
   "engines": {
     "vscode": "^1.89.0"
   },
@@ -12,7 +12,8 @@
   "activationEvents": [
     "onCommand:extension.undo",
     "onCommand:extension.redo",
-    "onCommand:extension.refreshTree"
+    "onCommand:extension.saveAndAdvance",
+    "onCommand:extension.toggleTimecode"
   ],
   "main": "./out/extension.js",
   "contributes": {
