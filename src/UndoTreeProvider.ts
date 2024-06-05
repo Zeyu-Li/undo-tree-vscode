@@ -19,8 +19,34 @@ export class UndoTreeProvider implements vscode.TreeDataProvider<TreeNodeItem> {
         return Promise.resolve(this.getTreeItems(element.node));
     }
 
+    private timeDifference(newDate: number, oldDate: number) {
+        const msPerSecond = 1000;
+        const msPerMinute = msPerSecond * 60;
+        const msPerHour = msPerMinute * 60;
+        const msPerDay = msPerHour * 24;
+    
+        const difference = newDate - oldDate;
+    
+        if (difference < msPerMinute) {
+            const seconds = Math.floor(difference / msPerSecond);
+            return `${seconds} second${seconds !== 1 ? 's' : ''}`;
+        } else if (difference < msPerHour) {
+            const minutes = Math.floor(difference / msPerMinute);
+            return `${minutes} minute${minutes !== 1 ? 's' : ''}`;
+        } else if (difference < msPerDay) {
+            const hours = Math.floor(difference / msPerHour);
+            return `${hours} hour${hours !== 1 ? 's' : ''}`;
+        } else {
+            const days = Math.floor(difference / msPerDay);
+            return `${days} day${days !== 1 ? 's' : ''}`;
+        }
+    } 
+
     private getTreeItems(node: TreeNode): TreeNodeItem[] {
-        return node.children.map((child, index) => new TreeNodeItem(`State ${index + 1}${child.hash === this.undoTree.getCurrentNode().hash ? " *": ""}`, child));
+        return node.children.map(
+            (child, index) => 
+                new TreeNodeItem(`State ${child.count}${child.hash === this.undoTree.getCurrentNode().hash ? " *": ""} ${this.undoTree.getShowTimecode() ? `(${this.timeDifference(new Date().getTime(), child.datetime.getTime())} ago)`: ""}`, child)
+        );
     }
 
     refresh(): void {

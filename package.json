@@ -32,6 +32,18 @@
         {
             "command": "extension.redo",
             "title": "Undo Tree: Redo"
+        },
+        {
+            "command": "extension.resetTree",
+            "title": "Undo Tree: Reset"
+        },
+        {
+            "command": "extension.saveAndAdvance",
+            "title": "Undo Tree: Save and Advance"
+        },
+        {
+            "command": "extension.toggleTimecode",
+            "title": "Undo Tree: Toggle Showing Timecode"
         }
     ],
     "keybindings": [
@@ -43,6 +55,11 @@
         {
             "command": "extension.redo",
             "key": "ctrl+alt+y",
+            "when": "editorTextFocus"
+        },
+        {
+            "command": "extension.saveAndAdvance",
+            "key": "ctrl+y",
             "when": "editorTextFocus"
         }
     ]

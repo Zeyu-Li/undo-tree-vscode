@@ -3,4 +3,6 @@ export interface TreeNode {
     children: TreeNode[];
     parent: TreeNode | null;
     hash: string;
+    datetime: Date;
+    count: number;
 }
