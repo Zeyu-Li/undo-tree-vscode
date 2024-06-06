@@ -2,6 +2,7 @@
   "name": "undo-tree",
   "displayName": "Undo Tree",
   "description": "Undo Tree like that in Vim or Emacs!!",
+  "publisher": "UndoTree",
   "version": "1.0.0",
   "engines": {
     "vscode": "^1.89.0"

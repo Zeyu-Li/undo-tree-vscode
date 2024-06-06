@@ -14,7 +14,7 @@ Navigate easier using the sidebar and click to get to the desired state. You can
 
 ## Demo
 
-![demo.gif](./demo.gif)
+![demo.gif](demo.gif)
 
 ## Features
 
