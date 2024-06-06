@@ -10,56 +10,91 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:extension.undo",
-    "onCommand:extension.redo",
-    "onCommand:extension.saveAndAdvance",
-    "onCommand:extension.toggleTimecode"
+    "onCommand:undotree.undo",
+    "onCommand:undotree.redo",
+    "onCommand:undotree.saveAndAdvance",
+    "onCommand:undotree.resetTree",
+    "onCommand:undotree.toggleTimecode"
   ],
   "main": "./out/extension.js",
   "contributes": {
+    "menus": {
+      "view/title": [
+        {
+          "command": "undotree.undo",
+          "group": "navigation@1"
+        },
+        {
+          "command": "undotree.redo",
+          "group": "navigation@2"
+        },
+        {
+          "command": "undotree.saveAndAdvance",
+          "group": "navigation@3"
+        },
+        {
+          "command": "undotree.resetTree",
+          "group": "navigation@4"
+        }
+      ]
+    },
+    "viewsContainers": {
+        "activitybar": [
+            {
+                "id": "undoTreeContainer",
+                "title": "Undo Tree",
+                "icon": "$(timeline-view-icon)"
+            }
+        ]
+    },
     "views": {
-        "explorer": [
+        "undoTreeContainer": [
             {
                 "id": "undoTreeView",
-                "name": "Undo Tree"
+                "name": "Undo Tree",
+                "contextualTitle": "Undo Tree"
             }
         ]
     },
     "commands": [
         {
-            "command": "extension.undo",
-            "title": "Undo Tree: Undo"
+            "command": "undotree.undo",
+            "title": "Undo Tree: Undo",
+            "icon": "$(debug-step-out)"
         },
         {
-            "command": "extension.redo",
-            "title": "Undo Tree: Redo"
+            "command": "undotree.redo",
+            "title": "Undo Tree: Redo",
+            "icon": "$(debug-step-into)"
         },
         {
-            "command": "extension.resetTree",
-            "title": "Undo Tree: Reset"
+            "command": "undotree.saveAndAdvance",
+            "title": "Undo Tree: Save and Advance",
+            "icon": "$(debug-step-over)"
         },
         {
-            "command": "extension.saveAndAdvance",
-            "title": "Undo Tree: Save and Advance"
+            "command": "undotree.resetTree",
+            "title": "Undo Tree: Reset",
+            "icon": "$(debug-restart)"
         },
         {
-            "command": "extension.toggleTimecode",
+            "command": "undotree.toggleTimecode",
             "title": "Undo Tree: Toggle Showing Timecode"
         }
     ],
     "keybindings": [
         {
-            "command": "extension.undo",
+            "command": "undotree.undo",
             "key": "ctrl+alt+z",
             "when": "editorTextFocus"
         },
         {
-            "command": "extension.redo",
+            "command": "undotree.redo",
             "key": "ctrl+alt+y",
             "when": "editorTextFocus"
         },
         {
-            "command": "extension.saveAndAdvance",
+            "command": "undotree.saveAndAdvance",
             "key": "ctrl+y",
             "when": "editorTextFocus"
         }
