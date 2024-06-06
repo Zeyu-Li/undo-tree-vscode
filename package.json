@@ -4,6 +4,10 @@
   "description": "Undo Tree like that in Vim or Emacs!!",
   "publisher": "UndoTree",
   "version": "1.0.0",
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/Zeyu-Li/undo-tree-vscode"
+  },
   "engines": {
     "vscode": "^1.89.0"
   },
