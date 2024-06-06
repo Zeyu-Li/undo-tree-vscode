@@ -13,7 +13,6 @@
     "onCommand:undotree.undo",
     "onCommand:undotree.redo",
     "onCommand:undotree.saveAndAdvance",
-    "onCommand:undotree.resetTree",
     "onCommand:undotree.toggleTimecode"
   ],
   "main": "./out/extension.js",
@@ -22,18 +21,22 @@
       "view/title": [
         {
           "command": "undotree.undo",
+          "when": "view == undoTreeView",
           "group": "navigation@1"
         },
         {
           "command": "undotree.redo",
+          "when": "view == undoTreeView",
           "group": "navigation@2"
         },
         {
           "command": "undotree.saveAndAdvance",
+          "when": "view == undoTreeView",
           "group": "navigation@3"
         },
         {
           "command": "undotree.resetTree",
+          "when": "view == undoTreeView",
           "group": "navigation@4"
         }
       ]

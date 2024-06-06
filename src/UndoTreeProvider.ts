@@ -99,7 +99,7 @@ class TreeNodeItem extends vscode.TreeItem {
     ) {
         super(label, collapsibleState);
         this.command = {
-            command: 'extension.gotoState',
+            command: 'undotree.gotoState',
             title: 'Go to State',
             arguments: [node]
         };
