@@ -10,15 +10,29 @@ export class UndoTreeProvider implements vscode.TreeDataProvider<TreeNodeItem> {
         TreeNodeItem | undefined | null | void
     > = this._onDidChangeTreeData.event;
 
-    constructor(private undoTree: UndoTree) {}
+    private undoTrees: Map<string, UndoTree> = new Map();
+
+    constructor() {}
 
     getTreeItem(element: TreeNodeItem): vscode.TreeItem {
         return element;
     }
 
     getChildren(element?: TreeNodeItem): Thenable<TreeNodeItem[]> {
+        const editor = vscode.window.activeTextEditor;
+        if (!editor) {
+            return Promise.resolve([]);
+        }
+
+        const uri = editor.document.uri.toString();
+        const undoTree = this.undoTrees.get(uri);
+
+        if (!undoTree) {
+            return Promise.resolve([]);
+        }
+
         if (!element) {
-            return Promise.resolve(this.getTreeItems(this.undoTree.getRoot()));
+            return Promise.resolve(this.getTreeItems(undoTree.getRoot()));
         }
         return Promise.resolve(this.getTreeItems(element.node));
     }
@@ -66,11 +80,11 @@ export class UndoTreeProvider implements vscode.TreeDataProvider<TreeNodeItem> {
             (child) =>
                 new TreeNodeItem(
                     `State ${child.count}${
-                        child.hash === this.undoTree.getCurrentNode().hash
+                        child.hash === this.getUndoTreeForActiveEditor()?.getCurrentNode().hash
                             ? ' *'
                             : ''
                     } ${
-                        this.undoTree.getShowTimecode()
+                        this.getUndoTreeForActiveEditor()?.getShowTimecode()
                             ? `\t(${this.timeDifference(
                                   new Date().getTime(),
                                   child.datetime.getTime()
@@ -80,6 +94,24 @@ export class UndoTreeProvider implements vscode.TreeDataProvider<TreeNodeItem> {
                     child
                 )
         );
+    }
+
+    ensureUndoTreeForDocument(document: vscode.TextDocument) {
+        const uri = document.uri.toString();
+        if (!this.undoTrees.has(uri)) {
+            const newUndoTree = new UndoTree(document.getText());
+            this.undoTrees.set(uri, newUndoTree);
+            newUndoTree.addState(document.getText());
+        }
+    }
+
+    getUndoTreeForActiveEditor(): UndoTree | undefined {
+        const editor = vscode.window.activeTextEditor;
+        if (!editor) {
+            return undefined;
+        }
+        this.ensureUndoTreeForDocument(editor.document);
+        return this.undoTrees.get(editor.document.uri.toString());
     }
 
     /**

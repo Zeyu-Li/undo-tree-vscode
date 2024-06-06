@@ -3,22 +3,22 @@ import { UndoTree } from './UndoTree';
 import { UndoTreeProvider } from './UndoTreeProvider';
 import { TreeNode } from './TreeNode';
 
-let undoTree: UndoTree;
 let treeDataProvider: UndoTreeProvider;
 
-// TODO: change icons
 export function activate(context: vscode.ExtensionContext) {
-    // initialize initial text editor as a node on load
-    const initialState =
-        vscode.window.activeTextEditor?.document.getText() || '';
-    undoTree = new UndoTree(initialState);
-    undoTree.addState(initialState);
+    vscode.window.onDidChangeActiveTextEditor((editor) => {
+        // initialize initial text editor as a node on load
+        const undoTree = treeDataProvider.getUndoTreeForActiveEditor();
+        treeDataProvider.refresh();
+    });
 
     /**
      * If current node is a leaf node with no child,
      * it pushes a new child node and stays
      */
     vscode.commands.registerCommand('undotree.undo', () => {
+        const undoTree = treeDataProvider.getUndoTreeForActiveEditor();
+        if (!undoTree) return
         const text_buff =
             vscode.window.activeTextEditor?.document.getText() || '';
         // if no change, don't do anything
@@ -33,6 +33,8 @@ export function activate(context: vscode.ExtensionContext) {
      * Goes to the first child node of the current node if it exists
      */
     vscode.commands.registerCommand('undotree.redo', () => {
+        const undoTree = treeDataProvider.getUndoTreeForActiveEditor();
+        if (!undoTree) return
         undoTree.redo(0); // Assuming single child for simplicity, takes the first in history
         treeDataProvider.refresh();
     });
@@ -42,6 +44,8 @@ export function activate(context: vscode.ExtensionContext) {
      * Can be though of as doing undo and redo in a single action
      */
     vscode.commands.registerCommand('undotree.saveAndAdvance', () => {
+        const undoTree = treeDataProvider.getUndoTreeForActiveEditor();
+        if (!undoTree) return
         const text_buff =
             vscode.window.activeTextEditor?.document.getText() || '';
         // if no change, don't do anything
@@ -56,6 +60,8 @@ export function activate(context: vscode.ExtensionContext) {
      * Resets the undo tree and keeps the current state as the new root node
      */
     vscode.commands.registerCommand('undotree.resetTree', () => {
+        const undoTree = treeDataProvider.getUndoTreeForActiveEditor();
+        if (!undoTree) return
         const newInitState =
             vscode.window.activeTextEditor?.document.getText() || '';
         undoTree.reset(newInitState);
@@ -68,6 +74,8 @@ export function activate(context: vscode.ExtensionContext) {
      * Toggles if the timecode is displayed on the sidebar or not
      */
     vscode.commands.registerCommand('undotree.toggleTimecode', () => {
+        const undoTree = treeDataProvider.getUndoTreeForActiveEditor();
+        if (!undoTree) return
         undoTree.toggleTimecode();
         treeDataProvider.refresh();
     });
@@ -76,6 +84,8 @@ export function activate(context: vscode.ExtensionContext) {
      * Go to a specific node
      */
     vscode.commands.registerCommand('undotree.gotoState', (node: TreeNode) => {
+        const undoTree = treeDataProvider.getUndoTreeForActiveEditor();
+        if (!undoTree) return
         undoTree.gotoNode(node);
         treeDataProvider.refresh();
     });
@@ -88,7 +98,7 @@ export function activate(context: vscode.ExtensionContext) {
     });
 
     // finish instantiation
-    treeDataProvider = new UndoTreeProvider(undoTree);
+    treeDataProvider = new UndoTreeProvider();
     vscode.window.registerTreeDataProvider('undoTreeView', treeDataProvider);
 }
 

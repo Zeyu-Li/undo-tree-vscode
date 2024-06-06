@@ -3,7 +3,7 @@
   "displayName": "Undo Tree",
   "description": "Undo Tree like that in Vim or Emacs!!",
   "publisher": "UndoTree",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "repository": {
       "type": "git",
       "url": "https://github.com/Zeyu-Li/undo-tree-vscode"
@@ -18,7 +18,8 @@
     "onCommand:undotree.undo",
     "onCommand:undotree.redo",
     "onCommand:undotree.saveAndAdvance",
-    "onCommand:undotree.toggleTimecode"
+    "onCommand:undotree.toggleTimecode",
+    "onCommand:undotree.resetTree"
   ],
   "main": "./out/extension.js",
   "contributes": {
