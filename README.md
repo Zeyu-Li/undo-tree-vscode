@@ -1,5 +1,9 @@
 # Undo Tree
 
+[![GitHub Repo stars](https://img.shields.io/github/stars/zeyu-li/undo-tree-vscode)](https://github.com/Zeyu-Li/undo-tree-vscode) [![GitHub Sponsors](https://img.shields.io/github/sponsors/zeyu-li)](https://github.com/sponsors/Zeyu-Li)
+
+
+
 Like the Undo Tree addon found in [Vim](https://github.com/mbbill/undotree) or [Emacs](https://elpa.gnu.org/packages/undo-tree.html) but found right inside of VSCode! Quickly navigate the states of the code easier using 1 shortcut. Functions sort of like git!
 
 Make changes and create a state with <kbd>ctrl</kbd>+<kbd>y</kbd> or <kbd>&#8984;</kbd>+<kbd>y</kbd> on MacOS. This will create a new child state to the initial state.
@@ -48,6 +52,17 @@ If there are any issues, we track it on [GitHub](https://github.com/Zeyu-Li/undo
 Thanks in advance for reporting any issues
 
 ---
+
+## Contributing
+
+See the [GitHub](https://github.com/Zeyu-Li/undo-tree-vscode) issues' tab.
+
+Thanks in advance if you want to contribute
+
+## Thanks
+
+- [@shellbertt](https://github.com/shellbertt)
+- [@mdakifc](https://github.com/mdakifc)
 
 <!-- ## Following extension guidelines
 
