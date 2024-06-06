@@ -80,7 +80,8 @@ export class UndoTreeProvider implements vscode.TreeDataProvider<TreeNodeItem> {
             (child) =>
                 new TreeNodeItem(
                     `State ${child.count}${
-                        child.hash === this.getUndoTreeForActiveEditor()?.getCurrentNode().hash
+                        child.hash ===
+                        this.getUndoTreeForActiveEditor()?.getCurrentNode().hash
                             ? ' *'
                             : ''
                     } ${
