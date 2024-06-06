@@ -1,14 +1,24 @@
 # Undo Tree
 
-Like the Undo Tree addon found in [Vim](https://github.com/mbbill/undotree) or [Emacs](https://elpa.gnu.org/packages/undo-tree.html) but found right inside of VSCode! Make changes and create a state with <kbd>ctrl</kbd>+<kbd>y</kbd> or <kbd>&#8984;</kbd>+<kbd>y</kbd> on MacOS. This will create a new child state to the initial state. To go back a state to the parent state do <kbd>ctrl</kbd>+<kbd>alt</kbd>+<kbd>z</kbd>. Now to go back the new state, hit <kbd>ctrl</kbd>+<kbd>alt</kbd>+<kbd>y</kbd>. Make some more changes and hitting +<kbd>alt</kbd>+<kbd>z</kbd> will create a new state and undo. Navigate easier using the sidebar and click to get to the desired state. You can even see the timecode of the changes if you toggle show timecode.
+Like the Undo Tree addon found in [Vim](https://github.com/mbbill/undotree) or [Emacs](https://elpa.gnu.org/packages/undo-tree.html) but found right inside of VSCode! Quickly navigate the states of the code easier using 1 shortcut. Functions sort of like git!
+
+Make changes and create a state with <kbd>ctrl</kbd>+<kbd>y</kbd> or <kbd>&#8984;</kbd>+<kbd>y</kbd> on MacOS. This will create a new child state to the initial state.
+
+To go back a state to the parent state do <kbd>ctrl</kbd>+<kbd>alt</kbd>+<kbd>z</kbd>. Now to go back the new state, hit <kbd>ctrl</kbd>+<kbd>alt</kbd>+<kbd>y</kbd>. Make some more changes and hitting +<kbd>alt</kbd>+<kbd>z</kbd> will create a new state and undo.
+
+Navigate easier using the sidebar and click to get to the desired state. You can even see the timecode of the changes if you toggle show timecode.
+
+## Demo
+
+![demo.gif](./demo.gif)
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+All states can be accessed visually on the Undo Tree sidebar when you click on the history icon in the activity bar.
 
-For example if there is an image subfolder under your extension project workspace:
+To create a save point do <kbd>ctrl</kbd>+<kbd>y</kbd> or <kbd>&#8984;</kbd>+<kbd>y</kbd> on MacOS. This will save your current changes in a state as a child to your previous save point.
 
-\!\[feature X\]\(images/feature-x.png\)
+To go back in history (or undo) hit <kbd>ctrl</kbd>+<kbd>alt</kbd>+<kbd>y</kbd>. To redo, hit <kbd>ctrl</kbd>+<kbd>alt</kbd>+<kbd>y</kbd>. This will go to your first save point if you have multiple under the parent node.
 
 Toggle the timecode of when you made the changes by going to command palette and looking up `Undo Tree: Toggle Showing Timecode`.
 
