@@ -46,21 +46,6 @@ This will remove all the saved states.
 > Tip: If you have a super large file, this extension may not be good for you
 > since it stores the code of every node in memory.
 
-<!-- ## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something. -->
-
 ## Issues
 
 If there are any issues, we track it on

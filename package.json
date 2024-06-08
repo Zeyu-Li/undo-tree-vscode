@@ -1,131 +1,132 @@
 {
-  "name": "undo-tree",
-  "displayName": "Undo Tree",
-  "description": "Undo Tree like that in Vim or Emacs!!",
-  "publisher": "UndoTree",
-  "version": "1.1.0",
-  "repository": {
-      "type": "git",
-      "url": "https://github.com/Zeyu-Li/undo-tree-vscode"
-  },
-  "engines": {
-    "vscode": "^1.89.0"
-  },
-  "categories": [
-    "Other"
-  ],
-  "activationEvents": [
-    "onCommand:undotree.undo",
-    "onCommand:undotree.redo",
-    "onCommand:undotree.saveAndAdvance",
-    "onCommand:undotree.toggleTimecode",
-    "onCommand:undotree.resetTree"
-  ],
-  "main": "./out/extension.js",
-  "contributes": {
-    "menus": {
-      "view/title": [
-        {
-          "command": "undotree.undo",
-          "when": "view == undoTreeView",
-          "group": "navigation@1"
-        },
-        {
-          "command": "undotree.redo",
-          "when": "view == undoTreeView",
-          "group": "navigation@2"
-        },
-        {
-          "command": "undotree.saveAndAdvance",
-          "when": "view == undoTreeView",
-          "group": "navigation@3"
-        },
-        {
-          "command": "undotree.resetTree",
-          "when": "view == undoTreeView",
-          "group": "navigation@4"
-        }
-      ]
+    "name": "undo-tree",
+    "displayName": "Undo Tree",
+    "description": "Undo Tree like that in Vim or Emacs!!",
+    "publisher": "UndoTree",
+    "version": "1.1.1",
+    "icon": "icon.png",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Zeyu-Li/undo-tree-vscode"
     },
-    "viewsContainers": {
-        "activitybar": [
-            {
-                "id": "undoTreeContainer",
-                "title": "Undo Tree",
-                "icon": "$(timeline-view-icon)"
-            }
-        ]
+    "engines": {
+        "vscode": "^1.89.0"
     },
-    "views": {
-        "undoTreeContainer": [
-            {
-                "id": "undoTreeView",
-                "name": "Undo Tree",
-                "contextualTitle": "Undo Tree"
-            }
-        ]
-    },
-    "commands": [
-        {
-            "command": "undotree.undo",
-            "title": "Undo Tree: Undo",
-            "icon": "$(debug-step-out)"
-        },
-        {
-            "command": "undotree.redo",
-            "title": "Undo Tree: Redo",
-            "icon": "$(debug-step-into)"
-        },
-        {
-            "command": "undotree.saveAndAdvance",
-            "title": "Undo Tree: Save and Advance",
-            "icon": "$(debug-step-over)"
-        },
-        {
-            "command": "undotree.resetTree",
-            "title": "Undo Tree: Reset",
-            "icon": "$(debug-restart)"
-        },
-        {
-            "command": "undotree.toggleTimecode",
-            "title": "Undo Tree: Toggle Showing Timecode"
-        }
+    "categories": [
+        "Other"
     ],
-    "keybindings": [
-        {
-            "command": "undotree.undo",
-            "key": "ctrl+alt+z",
-            "when": "editorTextFocus"
+    "activationEvents": [
+        "onCommand:undotree.undo",
+        "onCommand:undotree.redo",
+        "onCommand:undotree.saveAndAdvance",
+        "onCommand:undotree.toggleTimecode",
+        "onCommand:undotree.resetTree"
+    ],
+    "main": "./out/extension.js",
+    "contributes": {
+        "menus": {
+            "view/title": [
+                {
+                    "command": "undotree.undo",
+                    "when": "view == undoTreeView",
+                    "group": "navigation@1"
+                },
+                {
+                    "command": "undotree.redo",
+                    "when": "view == undoTreeView",
+                    "group": "navigation@2"
+                },
+                {
+                    "command": "undotree.saveAndAdvance",
+                    "when": "view == undoTreeView",
+                    "group": "navigation@3"
+                },
+                {
+                    "command": "undotree.resetTree",
+                    "when": "view == undoTreeView",
+                    "group": "navigation@4"
+                }
+            ]
         },
-        {
-            "command": "undotree.redo",
-            "key": "ctrl+alt+y",
-            "when": "editorTextFocus"
+        "viewsContainers": {
+            "activitybar": [
+                {
+                    "id": "undoTreeContainer",
+                    "title": "Undo Tree",
+                    "icon": "$(timeline-view-icon)"
+                }
+            ]
         },
-        {
-            "command": "undotree.saveAndAdvance",
-            "key": "ctrl+y",
-            "when": "editorTextFocus"
-        }
-    ]
-  },
-  "scripts": {
-    "vscode:prepublish": "yarn run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "pretest": "yarn run compile && yarn run lint",
-    "lint": "eslint src --ext ts",
-    "test": "vscode-test"
-  },
-  "devDependencies": {
-    "@types/vscode": "^1.89.0",
-    "@types/mocha": "^10.0.6",
-    "@types/node": "18.x",
-    "@typescript-eslint/eslint-plugin": "^7.7.1",
-    "@typescript-eslint/parser": "^7.7.1",
-    "eslint": "^8.57.0",
-    "typescript": "^5.4.5",
-    "@vscode/test-cli": "^0.0.9",
-    "@vscode/test-electron": "^2.3.9"
-  }
+        "views": {
+            "undoTreeContainer": [
+                {
+                    "id": "undoTreeView",
+                    "name": "Undo Tree",
+                    "contextualTitle": "Undo Tree"
+                }
+            ]
+        },
+        "commands": [
+            {
+                "command": "undotree.undo",
+                "title": "Undo Tree: Undo",
+                "icon": "$(debug-step-out)"
+            },
+            {
+                "command": "undotree.redo",
+                "title": "Undo Tree: Redo",
+                "icon": "$(debug-step-into)"
+            },
+            {
+                "command": "undotree.saveAndAdvance",
+                "title": "Undo Tree: Save and Advance",
+                "icon": "$(debug-step-over)"
+            },
+            {
+                "command": "undotree.resetTree",
+                "title": "Undo Tree: Reset",
+                "icon": "$(debug-restart)"
+            },
+            {
+                "command": "undotree.toggleTimecode",
+                "title": "Undo Tree: Toggle Showing Timecode"
+            }
+        ],
+        "keybindings": [
+            {
+                "command": "undotree.undo",
+                "key": "ctrl+alt+z",
+                "when": "editorTextFocus"
+            },
+            {
+                "command": "undotree.redo",
+                "key": "ctrl+alt+y",
+                "when": "editorTextFocus"
+            },
+            {
+                "command": "undotree.saveAndAdvance",
+                "key": "ctrl+y",
+                "when": "editorTextFocus"
+            }
+        ]
+    },
+    "scripts": {
+        "vscode:prepublish": "yarn run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "pretest": "yarn run compile && yarn run lint",
+        "lint": "eslint src --ext ts",
+        "test": "vscode-test"
+    },
+    "devDependencies": {
+        "@types/vscode": "^1.89.0",
+        "@types/mocha": "^10.0.6",
+        "@types/node": "18.x",
+        "@typescript-eslint/eslint-plugin": "^7.7.1",
+        "@typescript-eslint/parser": "^7.7.1",
+        "eslint": "^8.57.0",
+        "typescript": "^5.4.5",
+        "@vscode/test-cli": "^0.0.9",
+        "@vscode/test-electron": "^2.3.9"
+    }
 }
