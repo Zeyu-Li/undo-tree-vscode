@@ -1,3 +1,9 @@
+/**
+ * This file houses the common interfaces to vscode tree sdk
+ * for the sidebar. It also handles the utils for actions
+ * made with the sidebar or when you open a new document
+ */
+
 import * as vscode from 'vscode';
 import { TreeNode } from './TreeNode';
 import { UndoTree } from './UndoTree';
@@ -97,6 +103,10 @@ export class UndoTreeProvider implements vscode.TreeDataProvider<TreeNodeItem> {
         );
     }
 
+    /**
+     * Either creates an undotree for current active editor
+     * @param document the current open document in active editor
+     */
     ensureUndoTreeForDocument(document: vscode.TextDocument) {
         const uri = document.uri.toString();
         if (!this.undoTrees.has(uri)) {
@@ -106,6 +116,10 @@ export class UndoTreeProvider implements vscode.TreeDataProvider<TreeNodeItem> {
         }
     }
 
+    /**
+     * Get the undo tree for the active editor or undefined
+     * @returns undefined or the undotree for the active editor
+     */
     getUndoTreeForActiveEditor(): UndoTree | undefined {
         const editor = vscode.window.activeTextEditor;
         if (!editor) {

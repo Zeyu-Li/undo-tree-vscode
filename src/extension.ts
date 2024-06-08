@@ -1,10 +1,20 @@
+/**
+ * This is the main entry file and contains all the commands
+ * and the common interface to vscode through their library
+ */
+
 import * as vscode from 'vscode';
 import { UndoTreeProvider } from './UndoTreeProvider';
 import { TreeNode } from './TreeNode';
 
 let treeDataProvider: UndoTreeProvider;
 
+// TODO: global timecode
 export function activate(context: vscode.ExtensionContext) {
+    /**
+     * When the editor changes, we want to either initialize a new
+     * tree or use the one in the hashmap if it exists
+     */
     vscode.window.onDidChangeActiveTextEditor((editor) => {
         // initialize initial text editor as a node on load
         treeDataProvider.getUndoTreeForActiveEditor();

@@ -1,12 +1,16 @@
+/**
+ * This is the main node object for each text editor
+ */
+
 import * as vscode from 'vscode';
 import { TreeNode } from './TreeNode';
 import { randomUUID } from 'crypto';
 
 export class UndoTree {
-    private root: TreeNode;             // this is a placeholder node
-    private currentNode: TreeNode;      // this is the node in focus
-    private stateCounter: number = 1;   // counts how many states are tracked
-    private showTimecode = false;       // show timecode is false by default
+    private root: TreeNode; // this is a placeholder node
+    private currentNode: TreeNode; // this is the node in focus
+    private stateCounter: number = 1; // counts how many states are tracked
+    private showTimecode = false; // show timecode is false by default
 
     constructor(initialState: string) {
         this.root = {
